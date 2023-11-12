@@ -12,6 +12,7 @@ class App extends Component {
             winOfComp: 0,
             winOfPlayer: 0,
             endgame: false,
+            status: '',
             name: '',
         }
     }
@@ -25,16 +26,18 @@ class App extends Component {
                 });
         }
     }
-    onWinOfCompChange = (sum) => {
+    onWinOfCompChange = (sum, status) => {
         this.setState({
             winOfComp: (this.state.winOfComp + sum),
-            endgame: true
+            endgame: true,
+            status: status,
         })
     };
-    onWinOfPlayerChange = (sum) => {
+    onWinOfPlayerChange = (sum,status) => {
         this.setState({
             winOfPlayer: (this.state.winOfPlayer + sum),
-            endgame: true
+            endgame: true,
+            status: status,
         })
     };
     onStartNewGame = ()=>{
@@ -42,6 +45,7 @@ class App extends Component {
             endgame: false
         })
     }
+
     render() {
         this.name = JSON.parse(sessionStorage.getItem('playerName'));
         if (!this.name)
@@ -54,6 +58,7 @@ class App extends Component {
         else return <Result
             winOfPlayer={this.state.winOfPlayer}
             winOfComp={this.state.winOfComp}
+            status ={this.state.status}
             onStartNewGame={this.onStartNewGame}/>
     }
 }

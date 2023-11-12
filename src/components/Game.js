@@ -38,44 +38,44 @@ class Game extends Component {
     }
 
     refreshTable() {
-        if (this.cards.length)
-            this.setState(
-                {
-                    cardOfComputer: this.cards.pop(),
-                    cardOfPlayer: this.cards.pop()
-                }
-            )
-        else {
-            if (this.scoreOfComputer === this.scoreOfPlayer)
-                this.props.onWinOfCompChange(0);
-            else if (this.scoreOfComputer > this.scoreOfPlayer)
-                this.props.onWinOfCompChange(1);
-            else this.props.onWinOfPlayerChange(1);
-        }
+        this.setState(
+            {
+                cardOfComputer: this.cards.pop(),
+                cardOfPlayer: this.cards.pop()
+            }
+        )
     }
 
     handleClickNext = () => {
-        let res = this.isPrioritet(CARDS);
-        if (res)
-            res === 1 ? this.scoreOfComputer++ : this.scoreOfPlayer++;
-        this.refreshTable();
+        if (this.cards.length) {
+            let res = this.isPrioritet(CARDS);
+            if (res)
+                res === 1 ? this.scoreOfComputer++ : this.scoreOfPlayer++;
+            this.refreshTable();
+        } else {
+            if (this.scoreOfComputer === this.scoreOfPlayer)
+                this.props.onWinOfCompChange(0, 'DRAW');
+            else if (this.scoreOfComputer > this.scoreOfPlayer)
+                this.props.onWinOfCompChange(1, 'YOU LOSE');
+            else this.props.onWinOfPlayerChange(1, 'YOU WIN');
+        }
     }
 
 
     render() {
         return (
             <div className={'game'}>
-                <h1>COMPUTER</h1>
-                <h2>{this.scoreOfComputer}</h2>
-                <img style={{width: 200}}
+                <h2>COMPUTER</h2>
+                <h3>{this.scoreOfComputer}</h3>
+                <img style={{width: 150}}
                      name={'cardOfComputer'}
                      src={this.state.cardOfComputer}/>
-                <img style={{width: 200}}
+                <img style={{width: 150}}
                      name={'cardOfPlayer'}
                      src={this.state.cardOfPlayer}/>
                 <button onClick={this.handleClickNext}>next</button>
-                <h1>{this.props.playerName}</h1>
-                <h2>{this.scoreOfPlayer}</h2>
+                <h2>{this.props.playerName}</h2>
+                <h3>{this.scoreOfPlayer}</h3>
             </div>
         );
     }
