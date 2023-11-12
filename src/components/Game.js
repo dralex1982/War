@@ -1,8 +1,5 @@
 import React, {Component, useContext} from 'react';
-import {warContext} from "../utils/warContext";
 import CARDS from "../utils/constants";
-import Result from "./Result";
-
 
 class Game extends Component {
     constructor(props) {
@@ -24,6 +21,7 @@ class Game extends Component {
         }
         return array;
     }
+
     isPrioritet = (cards) => {
         const str = '/static/media/';
         const player1 = this.state.cardOfComputer;
@@ -61,21 +59,18 @@ class Game extends Component {
         }
     }
 
-
     render() {
         return (
             <div className={'game'}>
-                <h2>COMPUTER</h2>
-                <h3>{this.scoreOfComputer}</h3>
-                <img style={{width: 150}}
+                <h2>COMPUTER - {this.scoreOfComputer}pnts</h2>
+                <img style={{width: 150, margin: 10}}
                      name={'cardOfComputer'}
                      src={this.state.cardOfComputer}/>
-                <img style={{width: 150}}
+                <img style={{width: 150, margin: 10}}
                      name={'cardOfPlayer'}
                      src={this.state.cardOfPlayer}/>
                 <button onClick={this.handleClickNext}>next</button>
-                <h2>{this.props.playerName}</h2>
-                <h3>{this.scoreOfPlayer}</h3>
+                <h2>{this.props.playerName} - {this.scoreOfPlayer}pnts</h2>
             </div>
         );
     }

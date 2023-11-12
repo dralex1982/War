@@ -5,23 +5,24 @@ import App from "../App";
 import Game from "./Game";
 import {render} from "@testing-library/react";
 
-class Result extends Component {
+const Result = ({onStartNewGame}) => {
 
-    handleClickNextGame = () => {
-        this.props.onStartNewGame();
+    const handleClickNextGame = () => {
+        onStartNewGame();
     }
 
-    render() {
-        return (
-            <div className={'result'}>
-                <h1>{this.props.status}</h1>
-                <h2>LOSE\WIN</h2>
-                <h2>{this.props.winOfComp}\{this.props.winOfPlayer}</h2>
-                <button onClick={this.handleClickNextGame}>Again
-                </button>
-            </div>
-        );
-    }
+    return (
+        <warContext.Consumer>
+            {value =>
+                <div className={'result'}>
+                    <h1>{value.status}</h1>
+                    <h2>LOSE\WIN</h2>
+                    <h2>{value.winOfComp}\{value.winOfPlayer}</h2>
+                    <button onClick={handleClickNextGame}>Again</button>
+                </div>
+            }
+        </warContext.Consumer>
+    );
 };
 
 export default Result;
