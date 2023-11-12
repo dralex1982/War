@@ -1,0 +1,71 @@
+import c2 from '../style/images/2_of_clubs.png';
+import d2 from '../style/images/2_of_diamonds.png';
+import h2 from '../style/images/2_of_hearts.png';
+import s2 from '../style/images/2_of_spades.png';
+import c3 from '../style/images/3_of_clubs.png';
+import d3 from '../style/images/3_of_diamonds.png';
+import h3 from '../style/images/3_of_hearts.png';
+import s3 from '../style/images/3_of_spades.png';
+import c4 from '../style/images/4_of_clubs.png';
+import d4 from '../style/images/4_of_diamonds.png';
+import h4 from '../style/images/4_of_hearts.png';
+import s4 from '../style/images/4_of_spades.png';
+import c5 from '../style/images/5_of_clubs.png';
+import d5 from '../style/images/5_of_diamonds.png';
+import h5 from '../style/images/5_of_hearts.png';
+import s5 from '../style/images/5_of_spades.png';
+import c6 from '../style/images/6_of_clubs.png';
+import d6 from '../style/images/6_of_diamonds.png';
+import h6 from '../style/images/6_of_hearts.png';
+import s6 from '../style/images/6_of_spades.png';
+import c7 from '../style/images/7_of_clubs.png';
+import d7 from '../style/images/7_of_diamonds.png';
+import h7 from '../style/images/7_of_hearts.png';
+import s7 from '../style/images/7_of_spades.png';
+import c8 from '../style/images/8_of_clubs.png';
+import d8 from '../style/images/8_of_diamonds.png';
+import h8 from '../style/images/8_of_hearts.png';
+import s8 from '../style/images/8_of_spades.png';
+import c9 from '../style/images/9_of_clubs.png';
+import d9 from '../style/images/9_of_diamonds.png';
+import h9 from '../style/images/9_of_hearts.png';
+import s9 from '../style/images/9_of_spades.png';
+import c10 from '../style/images/10_of_clubs.png';
+import d10 from '../style/images/10_of_diamonds.png';
+import h10 from '../style/images/10_of_hearts.png';
+import s10 from '../style/images/10_of_spades.png';
+import cj from '../style/images/jack_of_clubs2.png';
+import dj from '../style/images/jack_of_diamonds2.png';
+import hj from '../style/images/jack_of_hearts2.png';
+import sj from '../style/images/jack_of_spades2.png';
+import cq from '../style/images/queen_of_clubs2.png';
+import dq from '../style/images/queen_of_diamonds2.png';
+import hq from '../style/images/queen_of_hearts2.png';
+import sq from '../style/images/queen_of_spades2.png';
+import ck from '../style/images/king_of_clubs2.png';
+import dk from '../style/images/king_of_diamonds2.png';
+import hk from '../style/images/king_of_hearts2.png';
+import sk from '../style/images/king_of_spades2.png';
+import ca from '../style/images/ace_of_clubs.png';
+import da from '../style/images/ace_of_diamonds.png';
+import ha from '../style/images/ace_of_hearts.png';
+import sa from '../style/images/ace_of_spades.png';
+
+const CARDS =
+    [
+        c2, d2, h2, s2,
+        c3, d3, h3, s3,
+        c4, d4, h4, s4,
+        c5, d5, h5, s5,
+        c6, d6, h6, s6,
+        c7, d7, h7, s7,
+        c8, d8, h8, s8,
+        c9, d9, h9, s9,
+        c10, d10, h10, s10,
+        cj, dj, hj, sj,
+        cq, dq, hq, sq,
+        ck, dk, hk, sk,
+        ca, da, ha, sa
+    ];
+
+export default CARDS;
