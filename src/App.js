@@ -12,16 +12,14 @@ const App = () => {
         winOfPlayer: 0,
         statusEndGame: '',
     });
-
     const [statusGame, setStatusGame] = useState(true);
     const [name, setName] = useState(JSON.parse(sessionStorage.getItem('playerName')));
 
     const onNameChange = value => {
-        setName(name => {
-            if (value !== '')
-                sessionStorage.setItem("playerName", JSON.stringify(value));
-            return {name: value || name.name}
-        })
+        if (value !== '') {
+            sessionStorage.setItem("playerName", JSON.stringify(value));
+            setName(value);
+        }
     };
     const onWinOfCompChange = (sum, statusEndGame) => {
         setStats({
