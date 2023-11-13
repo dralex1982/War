@@ -1,70 +1,60 @@
 import './App.css';
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Start from "./components/Start";
 import Game from "./components/Game";
 import Result from "./components/Result";
 import {warContext} from './utils/warContext'
 
+const App = () => {
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            winOfComp: 0,
-            winOfPlayer: 0,
-            endgame: false,
-            status: '',
-            name: '',
-        }
-    }
+    const [stats, setStats] = useState({
+        winOfComp: 0,
+        winOfPlayer: 0,
+        statusEndGame: '',
+    });
 
-    onNameChange = (name) => {
-        if (name !== '') {
-            sessionStorage.setItem("playerName", JSON.stringify(name));
-            this.setState(
-                {
-                    name: name,
-                });
-        }
-    }
-    onWinOfCompChange = (sum, status) => {
-        this.setState({
-            winOfComp: (this.state.winOfComp + sum),
-            endgame: true,
-            status: status,
+    const [statusGame, setStatusGame] = useState(true);
+    const [name, setName] = useState(JSON.parse(sessionStorage.getItem('playerName')));
+
+    const onNameChange = value => {
+        setName(name => {
+            if (value !== '')
+                sessionStorage.setItem("playerName", JSON.stringify(value));
+            return {name: value || name.name}
         })
     };
-    onWinOfPlayerChange = (sum, status) => {
-        this.setState({
-            winOfPlayer: (this.state.winOfPlayer + sum),
-            endgame: true,
-            status: status,
-        })
-    };
-    onStartNewGame = () => {
-        this.setState({
-            endgame: false
-        })
+    const onWinOfCompChange = (sum, statusEndGame) => {
+        setStats({
+            winOfComp: (stats.winOfComp + sum),
+            winOfPlayer: stats.winOfPlayer,
+            statusEndGame: statusEndGame,
+        });
+        setStatusGame(false);
+    }
+    const onWinOfPlayerChange = (sum, statusEndGame) => {
+        setStats({
+            winOfComp: stats.winOfComp,
+            winOfPlayer: (stats.winOfPlayer + sum),
+            statusEndGame: statusEndGame,
+        });
+        setStatusGame(false);
     }
 
-    render() {
-        this.name = JSON.parse(sessionStorage.getItem('playerName'));
-        if (!this.name)
-            return <warContext.Provider>
-                <Start onNameChange={this.onNameChange}/>
-            </warContext.Provider>;
-        if (!this.state.endgame)
-            return <Game
-                playerName={this.name}
-                onWinOfCompChange={this.onWinOfCompChange}
-                onWinOfPlayerChange={this.onWinOfPlayerChange}/>
-        else return <warContext.Provider value={{
-            winOfPlayer: this.state.winOfPlayer,
-            winOfComp: this.state.winOfComp,
-            status: this.state.status
-        }}><Result
-            onStartNewGame={this.onStartNewGame}/></warContext.Provider>
-    }
+    //setName();
+    //console.log(!name)
+
+    if (!name)
+        return <warContext.Provider
+            value={{onNameChange}}><Start/>
+        </warContext.Provider>;
+    if (statusGame)
+        return <warContext.Provider
+            value={{stats, name, onWinOfCompChange, onWinOfPlayerChange}}><Game/>
+        </warContext.Provider>
+    else return (<warContext.Provider
+        value={{stats, setStatusGame}}><Result/>
+    </warContext.Provider>)
+
 }
 
 export default App;

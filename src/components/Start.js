@@ -1,36 +1,31 @@
-import React, {Component} from 'react';
+import React, {useContext, useState} from 'react';
+import {warContext} from "../utils/warContext";
 
 
-class Start extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: ''
-        }
+const Start = () => {
+
+    const {onNameChange} = useContext(warContext);
+
+    const [nameValue, setNameValue] = useState('');
+
+    const handleClickGetName = () => {
+        onNameChange(nameValue);
     }
 
-    handleClickGetName = () => {
-        const name = this.state.name.trim();
-        this.props.onNameChange(name);
+    const handleChangeName = (event) => {
+        const newName = event.target.value.trim();
+        setNameValue(newName);
     }
 
-    handleChangeName = (event) => {
-        this.setState({
-            name: event.target.value
-        });
-    }
-
-    render() {
         return (
             <div className={'start'}>
                 <h1>Ready for WAR</h1>
                 <input type={'text'}
                        placeholder={'Enter yor name'}
-                       onChange={this.handleChangeName}/>
-                <button onClick={this.handleClickGetName}>start</button>
+                       onChange={handleChangeName}/>
+                <button onClick={handleClickGetName}>start</button>
             </div>
         );
-    }
 };
 
 export default Start;
