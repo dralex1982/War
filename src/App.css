@@ -1,12 +1,1 @@
 
-div {
-    margin: 100px;
-    width: 800px;
-    height: 800px;
-    border: darkkhaki solid;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}

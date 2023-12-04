@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
 import CARDS from "../utils/constants";
 import {warContext} from "../utils/warContext";
+import Stack from 'react-bootstrap/Stack';
+
 
 const Game = () => {
-
     const {name, onWinOfCompChange, onWinOfPlayerChange} = useContext(warContext);
-
     const [cardStatus, setCardStatus] = useState({
         cardOfComputer: null,
         cardOfPlayer: null,
@@ -62,16 +62,28 @@ const Game = () => {
     let scoreOfPlayer = useRef(0);
 
     return (
-        <div className={'game'}>
-            <h2>COMPUTER - {scoreOfComputer.current}pnts</h2>
-            <img style={{width: 150, margin: 10}}
-                 name={'cardOfComputer'}
-                 src={cardStatus.cardOfComputer}/>
-            <img style={{width: 150, margin: 10}}
-                 name={'cardOfPlayer'}
-                 src={cardStatus.cardOfPlayer}/>
-            <button onClick={handleClickNext}>next</button>
-            <h2>{name} - {scoreOfPlayer.current}pnts</h2>
+        <div className={'container'}>
+            <Stack className={'text-center'} gap={3}>
+                <div className={'p-2'}>
+                    <img style={{width: 100, margin: 10}}
+                         name={'cardOfComputer'}
+                         src={cardStatus.cardOfComputer}/>
+                    <h3>COMPUTER - {scoreOfComputer.current}pnts</h3>
+                    <hr/>
+                </div>
+                <div>
+                    <button className={'btn btn-primary text-center'} onClick={handleClickNext}>NEXT</button>
+                </div>
+                <div className={'p-2'}>
+                    <hr/>
+                    <h3>{name} - {scoreOfPlayer.current}pnts</h3>
+                    <img style={{width: 100, margin: 10}}
+                        name={'cardOfPlayer'}
+                        src={cardStatus.cardOfPlayer}/>
+
+                </div>
+            </Stack>
+            
         </div>
     );
 

@@ -1,20 +1,23 @@
-import React, {Component, useContext} from 'react';
+import React, {useContext} from 'react';
 import {warContext} from "../utils/warContext";
-import Start from "./Start";
-import App from "../App";
-import Game from "./Game";
-import {render} from "@testing-library/react";
+import {Card} from "react-bootstrap";
+
 
 const Result = () => {
 
     const {stats, setStatusGame} = useContext(warContext);
 
     return (
-        <div className={'result'}>
-            <h1>{stats.statusEndGame}</h1>
-            <h2>LOSE\WIN</h2>
-            <h2>{stats.winOfComp}\{stats.winOfPlayer}</h2>
-            <button onClick={() => setStatusGame(true)}>Again</button>
+        <div className={'position-absolute top-50 start-50 translate-middle text-center'}>
+                <Card style={{ width: '18rem' }}>
+                <Card.Header>End game...</Card.Header>
+                <Card.Body>
+                    <Card.Title>{stats.statusEndGame}</Card.Title>
+                    <h3>LOSE\WIN</h3>
+                    <h3>{stats.winOfComp}\{stats.winOfPlayer}</h3>
+                    <button className={'btn btn-primary'} onClick={() => setStatusGame(true)}>Again</button>
+                </Card.Body>
+            </Card>
         </div>
     );
 };
